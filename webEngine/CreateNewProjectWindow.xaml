@@ -1,0 +1,21 @@
+﻿<Window x:Class="webEngine.CreateNewProjectWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:webEngine"
+        mc:Ignorable="d"
+        Title="Create New Project" Height="250" Width="400">
+    <Grid>
+        <StackPanel Margin="20">
+            <TextBlock Text="Project Name:" Margin="0,0,0,5"/>
+            <TextBox x:Name="ProjectNameTextBox" Margin="0,0,0,15"/>
+            <TextBlock Text="Project Location:" Margin="0,0,0,5"/>
+            <StackPanel Orientation="Horizontal" Margin="0,0,0,15">
+                <TextBox x:Name="ProjectLocationTextBox" Width="250" IsReadOnly="True" Margin="0,0,5,0"/>
+                <Button Content="Browse..." Click="BrowseButton_Click"/>
+            </StackPanel>
+            <Button Content="Create Project" Click="CreateProjectButton_Click" Height="45"/>
+        </StackPanel>
+    </Grid>
+</Window>

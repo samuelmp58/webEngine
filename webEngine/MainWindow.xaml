@@ -1,0 +1,81 @@
+﻿<Window x:Class="webEngine.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:webEngine"
+        xmlns:webview2="clr-namespace:Microsoft.Web.WebView2.Wpf;assembly=Microsoft.Web.WebView2.Wpf"
+        mc:Ignorable="d"
+        Title="Game IDE" Height="600" Width="1000" Icon="pack://application:,,,/Images/icon.ico">
+    <DockPanel>
+        <!-- Barra lateral -->
+        <DockPanel x:Name="sidebar" Width="250" MinWidth="150" DockPanel.Dock="Left" Background="#FF1B2E4E">
+            <!-- Área para exibir a árvore de arquivos -->
+            <Expander Header="Project" Background="Transparent" Foreground="White" Margin="5" Padding="5" DockPanel.Dock="Top">
+                <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" MaxHeight="450">
+                    <TreeView x:Name="fileTreeView" Background="Transparent" Foreground="Wheat" SelectedItemChanged="fileTreeView_SelectedItemChanged"/>
+                </ScrollViewer>
+            </Expander>
+
+            <!-- Botões na parte inferior -->
+            <StackPanel VerticalAlignment="Bottom">
+                <Button x:Name="btn_assets" Content="Assets" Margin="5" Padding="10" Background="#FF1D1D1D" Foreground="White" BorderBrush="Transparent" Height="42" Click="btn_assets_Click"/>
+                <Button Content="Settings" Margin="5" Padding="10" Background="#FF1D1D1D" Foreground="White" BorderBrush="Transparent" Height="40"/>
+            </StackPanel>
+        </DockPanel>
+
+        <!-- GridSplitter para permitir redimensionamento entre sidebar e painel principal -->
+        <GridSplitter Width="5" Background="Gray" HorizontalAlignment="Right" VerticalAlignment="Stretch" DockPanel.Dock="Left"/>
+
+        <!-- Painel principal -->
+        <Grid Background="#F5F5F5">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <!-- Área superior -->
+                <RowDefinition Height="*"/>
+                <!-- Área principal -->
+                <RowDefinition Height="Auto"/>
+                <!-- Área inferior -->
+                <RowDefinition Height="Auto"/>
+                <!-- Área inferior de controle -->
+            </Grid.RowDefinitions>
+
+            <!-- Área superior -->
+            <ToolBarTray Grid.Row="0" Background="#FF1D1D1D">
+                <ToolBar Background="#FF1D1D1D" Height="50" VerticalAlignment="Center" Margin="-2,0,2,0">
+                    <Button x:Name="btn_hideShow" Content="Hide" Margin="5" Padding="10" Background="#FF1D1D1D" Foreground="BlueViolet" BorderBrush="Transparent" Height="40" Click="btn_hideShow_Click"/>
+
+                    <Button x:Name="btn_createNewProject" Content="New" Foreground="White" Width="60" Height="50" Click="btn_createNewProject_Click"/>
+                    <Button x:Name="btn_open" Content="Open" Foreground="White" Width="74" Click="Project_Click"/>
+                    
+                    <Button x:Name="btn_loadHtml" Content="Load HTML" Foreground="White" Margin="5" Padding="10" Click="LoadHtml_Click" Height="40"/>
+                    <Button x:Name="btn_saveHtml" Content="Save HTML" Foreground="White"  Width="98" Height="58" Click="btn_saveHtml_Click"/>
+
+                    <Button x:Name="btn_save" Content="Save file" Foreground="White"  Width="78" Height="58" Click="SaveFile_Click"/>
+
+                    <Button x:Name="btn_compile" Content="Compile" Foreground="Wheat" Margin="5" Padding="10" Height="40" Click="btn_compile_Click"/>
+                    <Button x:Name="btn_run" Content="Run" Foreground="White" Margin="5" Padding="10" Height="40" Click="btn_run_Click"/>
+
+                </ToolBar>
+            </ToolBarTray>
+
+            <!-- Área principal com TabControl -->
+            <TabControl x:Name="tabControl" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                <TabItem Header="Live">
+                    <webview2:WebView2 x:Name="webView" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
+                </TabItem>
+            </TabControl>
+
+            <!-- Área inferior -->
+            <StatusBar Grid.Row="2" Background="#FF1D1D1D">
+                <TextBlock Text="ClassName:" Foreground="White" VerticalAlignment="Center" Margin="10"/>
+                <TextBlock x:Name="classfolder" Text="None" Foreground="White" VerticalAlignment="Center"/>
+            </StatusBar>
+
+            <!-- Área inferior de controle -->
+            <DockPanel Grid.Row="3" Background="#F5F5F5" LastChildFill="True">
+                <WebBrowser x:Name="fileExplorerDown" />
+            </DockPanel>
+        </Grid>
+    </DockPanel>
+</Window>
