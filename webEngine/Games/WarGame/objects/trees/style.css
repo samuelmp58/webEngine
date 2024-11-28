@@ -1,0 +1,58 @@
+.palmTree{
+    width: 170px;
+    height: 170px;
+    z-index: 9999;
+    background-image: url('palmTree.png');
+    background-size: contain;
+}
+
+.palmTree2{
+    width: 170px;
+    height: 170px;
+    /* background: blue; */
+    z-index: 9999;
+    background-image: url('palmTree2.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.palmTree3{
+    width: 170px;
+    height: 170px;
+    /* background: blue; */
+    z-index: 9999;
+    background-image: url('palmTree3.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.palmTree4{
+    width: 170px;
+    height: 170px;
+    /* background: blue; */
+    z-index: 9999;
+    background-image: url('palmTree4.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.palmTree5{
+    width: 170px;
+    height: 170px;
+    /* background: blue; */
+    z-index: 9999;
+    background-image: url('palmTree5.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.plant{
+    width: 70px;
+    height: 70px;
+    z-index: 9999;
+    background-image: url('plant.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+

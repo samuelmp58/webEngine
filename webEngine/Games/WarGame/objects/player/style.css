@@ -1,0 +1,89 @@
+
+/* Classe para o estado idle (parado) */
+.player-knife-idle {
+    background-image: url("knife/idle/survivor-idle_knife_0.png");
+    background-position: -9px -5px;
+}
+/* Classe para o estado idle (parado) */
+.player-usp-idle {
+    background-image: url("handgun/idle/survivor-idle_handgun_1.png");
+    background-position: -9px -10px;
+}
+/* Classe para o estado rifle */
+.player-rifle-idle {
+    background-image: url('rifle/idle/survivor-idle_rifle_0.png');
+    background-position: -9px -10px;
+}
+
+/* Classe para o estado shoot ou attack */
+.player-knife-attack1{
+    background-image: url("knife/meleeattack/survivor-meleeattack_knife_1.png");
+}
+.player-knife-attack2{
+    background-image: url("knife/meleeattack/survivor-meleeattack_knife_2.png");
+}
+.player-knife-attack3{
+    background-image: url("knife/meleeattack/survivor-meleeattack_knife_3.png");
+}
+.player-knife-attack4{
+    background-image: url("knife/meleeattack/survivor-meleeattack_knife_4.png");
+}
+.player-knife-attack5{
+    background-image: url("knife/meleeattack/survivor-meleeattack_knife_5.png");
+}
+.player-knife-attack6{
+    background-image: url("knife/meleeattack/survivor-meleeattack_knife_6.png");
+}
+
+.player-knife-attack7{
+    background-image: url("knife/meleeattack/survivor-meleeattack_knife_7.png");
+}
+
+.player-knife-attack8{
+    background-image: url("knife/meleeattack/survivor-meleeattack_knife_8.png");
+}
+
+.player-knife-attack9{
+    background-image: url("knife/meleeattack/survivor-meleeattack_knife_9.png");
+}
+.player-knife-attack10{
+    background-image: url("knife/meleeattack/survivor-meleeattack_knife_10.png");
+}
+.player-knife-attack11{
+    background-image: url("knife/meleeattack/survivor-meleeattack_knife_11.png");
+}
+.player-knife-attack12{
+    background-image: url("knife/meleeattack/survivor-meleeattack_knife_12.png");
+}
+.player-knife-attack13{
+    background-image: url("knife/meleeattack/survivor-meleeattack_knife_13.png");
+}
+.player-knife-attack13{
+    background-image: url("knife/meleeattack/survivor-meleeattack_knife_14.png");
+}
+.player-knife-attack1,
+.player-knife-attack2,
+.player-knife-attack3,
+.player-knife-attack4,
+.player-knife-attack5,
+.player-knife-attack6,
+.player-knife-attack7,
+.player-knife-attack8,
+.player-knife-attack9,
+.player-knife-attack10,
+.player-knife-attack11,
+.player-knife-attack12,
+.player-knife-attack13,
+.player-knife-attack14 {
+    background-position: 0px -5px;
+    background-size: 100px; /* Defina o tamanho desejado */
+}
+
+.player-usp-shoot {
+    background-image: url('handgun/shoot/survivor-shoot_handgun_1.png');
+    background-position: -9px -10px;
+}
+.player-rifle-shoot {
+    background-image: url('rifle/shoot/survivor-shoot_rifle_1.png');
+    background-position: -9px -10px;
+}

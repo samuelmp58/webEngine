@@ -1,0 +1,21 @@
+.airplane {
+    width: 550px;
+    height: 450px;
+    background-image: url('airplane.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    z-index: 9999;
+    transform: rotate(50deg); /* Aplica rotação à div principal */
+    position: relative;
+}
+
+/*
+.airplane .airplaneCollision {
+    width: 60px;
+    height: 450px;
+    position: absolute;
+    left: 245px;
+    background-color: #e4565629;
+    transform-origin: top center;
+}
+*/

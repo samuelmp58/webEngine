@@ -1,0 +1,55 @@
+#boxOne{
+    position: absolute;
+    width: 50px;
+    height: 100px;
+    background: tan;
+    left: 200px;
+    top: 10px;
+    z-index: 0;
+    /* background-image: url("boxOne.jpg"); */
+}
+
+.boxTwo{
+    filter: drop-shadow(-5px 4px 6px black);
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    background: tan;
+    z-index: 0;
+    background-image: url("boxTwo.png");
+    background-size: cover;
+}
+
+.boxThree{
+    filter: drop-shadow(-5px 4px 6px black);
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    background:blue;
+    z-index: 0;
+    background-image: url("boxThree.png");
+    background-size: cover;
+}
+
+.boxFour{
+    filter: drop-shadow(-5px 4px 6px black);
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    background: white;
+    z-index: 0;
+    background-image: url("boxFour.jpg"); 
+    background-size: cover;
+}
+
+#boxFive{
+    filter: drop-shadow(-5px 4px 6px black);
+    position: absolute;
+    width: 50px;
+    height: 100px;
+    background: white;
+    left: 900px;
+    top: 500px;
+    z-index: 0;
+    /* background-image: url("boxFive.jpg"); */
+}

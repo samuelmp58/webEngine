@@ -1,0 +1,33 @@
+.table{
+    display: none;
+    width: 140px;
+    height: 160px;
+    position: absolute;
+    background-image: url('table.png');
+    background-size: cover;
+}
+
+.barrel{
+    background-image: url('barrel1.png');
+    background-size: cover;
+    width: 62px;
+    height: 59.5px;
+}
+
+.container{
+    position: absolute;
+    background-image: url('container.png');
+    background-size: cover;
+    width: 700px;
+    height: 300px;
+}
+.container img {
+   width: 100%;
+}
+.container_inside{
+    position: absolute;
+	
+    background-size: cover;
+    width: 700px;
+    height: 300px;
+}

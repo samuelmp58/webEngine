@@ -1,0 +1,11 @@
+@import url('player/style.css');
+@import url('ground/style.css');
+@import url('trees/style.css');
+@import url('wall/style.css');
+@import url('boxes/style.css');
+@import url('dropped/style.css');
+@import url('airplane/style.css');
+@import url('gif/style.css');
+@import url('object/style.css');
+@import url('cars/style.css');
+@import url('enemies/style.css')

@@ -1,0 +1,22 @@
+.wall{
+    position: absolute;
+    background-image: url('wall.PNG');
+    box-shadow: 2px 5px 4px rgba(0, 0, 0, 0.4);
+
+    width: 52.2px;
+    height: 46.2px;
+	
+	/*
+	max-height: 46.2px !important;
+	max-width: 52.2px !important;
+	*/
+
+    z-index: 1;
+}
+
+
+.wallSide{
+    border-top-right-radius: 50px;
+/*	box-shadow: -21px 5px 4px rgba(0, 0, 0, 0.4);*/
+	z-index: 0;
+}

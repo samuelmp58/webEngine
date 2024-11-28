@@ -1,0 +1,10 @@
+.fire{
+    /*pointer-events: none;*/
+    mix-blend-mode: screen;
+	position: absolute;
+    height: 1000px;
+    width: 450px;
+    background-image: url('fire.gif');
+    background-repeat: no-repeat;
+	z-index: 9999;
+}

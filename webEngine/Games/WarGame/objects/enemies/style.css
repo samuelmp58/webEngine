@@ -1,0 +1,10 @@
+
+.zombie {
+    background-image: url('zombie.png');
+    width: 200px;
+    height: 200px;
+    background-size: contain; 
+    background-repeat: no-repeat; /* A imagem não se repete */
+    background-position: center; /* A imagem está centralizada */
+    
+}

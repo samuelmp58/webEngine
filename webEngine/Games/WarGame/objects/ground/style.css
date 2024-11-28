@@ -1,0 +1,45 @@
+#levelBackground{
+    position: absolute;
+    width: 20000;
+    height: 20000px;
+    align-content:center;
+   /* background: #575a28b3; */
+    left: 0px;
+    top: 0px;
+    z-index:-1;
+    background-image: url("sand.png");
+}
+.stair{
+    position: absolute;
+    height: 220px;
+    background-image: url('stair.PNG');
+    z-index: -1;
+    
+}
+.water{
+    width: 500px;
+    height: 300px;
+    background-image: url('water.png');
+    border-radius: 60px;
+}
+.tile3{
+	position: absolute;
+    background-image: url('tile3.png'); 
+	background-size: 210px;
+    opacity: 80%;
+	z-index: -1;
+}
+.x_mark{
+    background-image: url('x_mark.png');
+    background-size: cover;
+    width: 62px;
+    height: 59px;
+    mix-blend-mode: multiply;
+}
+.a_mark{
+    background-image: url('a_mark.png');
+    background-size: cover;
+    width: 65px;
+    height: 65px;
+    mix-blend-mode: multiply;
+}
