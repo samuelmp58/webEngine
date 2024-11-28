@@ -6,6 +6,8 @@ let control;
 let boxOne;
 let ak;
 
+
+//
 function setPlayerControl(){
 	control  = new Control(player, {
         speedMultiplier: 3,
