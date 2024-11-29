@@ -19,15 +19,14 @@ https://github.com/user-attachments/assets/2863a2ca-aa9b-4c84-b675-e46bd5d91c1b
 - **Scripts auxiliares para jogos** que simplificam a lógica de desenvolvimento, com suporte para física, colisões e outros elementos interativos.  
 - Sistema modular que facilita a expansão e personalização da engine.  
 
-## 📂 Estrutura do projeto  
+### 📂 Estrutura do Projeto  
 
-- **/EngineCore**: Contém o núcleo da engine.  
-- **/Scripts**: Scripts auxiliares para facilitar o desenvolvimento de jogos.  
-- **/Editor**: Código relacionado à interface e funcionalidades do editor.  
-- **/Resources**: Arquivos estáticos, como ícones e templates.  
+- **/objects**  
+  Contém as pastas organizadas por categoria (ex.: `/objects/car`) e os arquivos relacionados, como imagens utilizadas no projeto.  
+
+- **/scripts**  
+  - **default.js**: Biblioteca base com funções fundamentais, como física, movimentação e lógica do jogo.  
+  - **main.js**: Arquivo principal que interage com o `default.js`, configurando elementos específicos do jogo, como atributos do player, velocidade, e quem utiliza física.  
   
 ---  
-Comece a criar jogos e aplicações interativas com o poder do HTML, CSS e JavaScript usando a **WebEngine**! 💻✨  
-
-https://github.com/user-attachments/assets/2863a2ca-aa9b-4c84-b675-e46bd5d91c1b
 
