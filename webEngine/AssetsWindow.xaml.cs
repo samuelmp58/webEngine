@@ -31,6 +31,7 @@ namespace webEngine
             LoadAssetsTreeView();
 
             codeEditor = new CodeEditor(main);
+            //DisplayDirectoryContent(projectPath);
 
         }
         private async void InitializeWebView()
@@ -149,10 +150,18 @@ namespace webEngine
             string basePath = _projectObjectsPath.ToString() ;
  
             AssetsTreeView.Items.Clear();
-            TreeViewItem textureItem = new TreeViewItem { Header = "Objects", Tag = basePath, IsExpanded = true };
-            LoadDirectory(textureItem);
+            try
+            {
+                TreeViewItem textureItem = new TreeViewItem { Header = "Objects", Tag = basePath, IsExpanded = true};
+                LoadDirectory(textureItem);
+                //textureItem.IsSelected = true;
 
-            AssetsTreeView.Items.Add(textureItem);
+                AssetsTreeView.Items.Add(textureItem);
+
+            }
+            catch (Exception ex) { MessageBox.Show(ex.Message); }
+          
+
         }
 
         private void LoadDirectory(TreeViewItem parentItem)

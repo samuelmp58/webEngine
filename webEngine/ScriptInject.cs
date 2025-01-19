@@ -89,42 +89,221 @@ namespace webEngine
         document.addEventListener('mousemove', onResize);
     }
 
-    function onDoubleClickDraggable() {
-        const draggable = this;
 
-        // Get the class name of the element
+function onDoubleClickDraggable(e) {
+    e.preventDefault();  // Impedir o comportamento padrão do duplo clique
+
+    const draggable = this;
+
+    // Criar e exibir um menu com opções
+    const menu = document.createElement('div');
+    menu.style.position = 'absolute';
+    menu.style.backgroundColor = '#ffffff';
+    menu.style.border = '1px solid #ddd';
+    menu.style.borderRadius = '8px';  // Borda arredondada
+    menu.style.padding = '10px';
+    menu.style.boxShadow = '0 4px 8px rgba(0, 0, 0, 0.1)';
+    menu.style.zIndex = '2147483647';  // Garantir que o menu tenha o maior z-index possível
+    menu.style.fontFamily = 'Arial, sans-serif';  // Melhorar a legibilidade
+    menu.style.fontSize = '14px';  // Tamanho da fonte
+    menu.style.minWidth = '200px';  // Largura mínima para o menu
+    menu.style.transition = 'all 0.3s ease';  // Transição suave para interações
+
+    menu.innerHTML = `
+        <div id=""viewStyle"" style=""padding: 8px; cursor: pointer; transition: background-color 0.3s ease;"">Abrir CSS</div>
+        <div id=""setId"" style=""padding: 8px; cursor: pointer; transition: background-color 0.3s ease;"">Definir ID</div>
+        <div id=""setZIndex"" style=""padding: 8px; cursor: pointer; transition: background-color 0.3s ease;"">Alterar Z-Index</div>
+        <div id=""setBackgroundColor"" style=""padding: 8px; cursor: pointer; transition: background-color 0.3s ease;"">Alterar Cor de Fundo</div>
+        <div id=""copyHTML"" style=""padding: 8px; cursor: pointer; transition: background-color 0.3s ease;"">Copiar HTML</div>
+        <div id=""removeElement"" style=""padding: 8px; cursor: pointer; transition: background-color 0.3s ease;"">Remover Elemento</div>
+        <div id=""addCollision"" style=""padding: 8px; cursor: pointer; transition: background-color 0.3s ease;"">Adicionar Colisão</div>
+    `;
+
+    // Posição do menu onde o mouse clicou, considerando o scroll
+    const mouseX = e.clientX + window.scrollX;
+    const mouseY = e.clientY + window.scrollY;
+
+    menu.style.left = `${mouseX + 10}px`; // 10px de distância para a direita do cursor
+    menu.style.top = `${mouseY + 10}px`; // 10px de distância para baixo do cursor
+
+    document.body.appendChild(menu);
+
+    // Ações ao clicar nas opções do menu
+    document.getElementById('viewStyle').addEventListener('click', function() {
         const className = draggable.className.split(' ')[0];
-
-        // Get the computed style of the element
         const computedStyle = getComputedStyle(draggable);
-
-        // Get the background image URL
         const backgroundImage = computedStyle.backgroundImage;
-
-        // Extract the URL from the background image string
-        const urlMatch = backgroundImage.match(/url\([""']?([^""']*)[""']?\)/);
-
+        const urlMatch = backgroundImage.match(/url\([""""""""']?([^""""""""']*)[""""""""']?\)/);
         let imageUrl = '';
         if (urlMatch) {
             imageUrl = urlMatch[1];
         }
 
-        // Create an object to send the information to C#
-        const message = {
-            className: className,
-            imageUrl: imageUrl
-        };
-
-        // Convert the object to a JSON string
+        const message = { className: className, imageUrl: imageUrl };
         const messageJson = JSON.stringify(message);
 
-        // Send the message to C#
         if (window.chrome && window.chrome.webview) {
             window.chrome.webview.postMessage(messageJson);
         } else {
             console.error('WebView2 postMessage API is not available.');
         }
-    }
+
+        document.body.removeChild(menu);
+    });
+
+    document.getElementById('setId').addEventListener('click', function() {
+        const newId = prompt(""Digite o novo ID para o elemento:"", draggable.id);
+        if (newId) {
+            draggable.id = newId;
+        }
+        document.body.removeChild(menu);
+    });
+
+    document.getElementById('setZIndex').addEventListener('click', function() {
+        const newZIndex = prompt(""Digite o novo Z-Index para o elemento:"", draggable.style.zIndex);
+        if (newZIndex !== null && newZIndex !== '') {
+            draggable.style.zIndex = newZIndex;
+        }
+        document.body.removeChild(menu);
+    });
+
+    document.getElementById('setBackgroundColor').addEventListener('click', function() {
+        const newColor = prompt(""Digite a nova cor de fundo para o elemento (em formato hexadecimal ou nome):"", draggable.style.backgroundColor);
+        if (newColor !== null && newColor !== '') {
+            draggable.style.backgroundColor = newColor;
+        }
+        document.body.removeChild(menu);
+    });
+
+    document.getElementById('copyHTML').addEventListener('click', function() {
+        const html = draggable.outerHTML;
+        navigator.clipboard.writeText(html).then(() => {
+            alert(""HTML copiado para a área de transferência!"");
+        });
+        document.body.removeChild(menu);
+    });
+
+    document.getElementById('removeElement').addEventListener('click', function() {
+        if (confirm(""Tem certeza de que deseja remover este elemento?"")) {
+            draggable.remove();
+        }
+        document.body.removeChild(menu);
+    });
+
+    // Adicionar colisão (movível e redimensionável apenas pelo canto inferior direito)
+    document.getElementById('addCollision').addEventListener('click', function() {
+        // Criar uma div de colisão sobre o elemento
+        const collisionDiv = document.createElement('div');
+        collisionDiv.style.position = 'absolute';
+        collisionDiv.style.backgroundColor = 'rgba(255, 0, 0, 0.3)'; // Cor semi-transparente
+        collisionDiv.style.border = '1px dashed red';  // Borda vermelha para destacar a colisão
+        collisionDiv.style.zIndex = '9999'; // Certificar-se de que a colisão tenha um z-index alto
+        collisionDiv.style.top = `${0}px`;
+        collisionDiv.style.left = `${0}px`;
+        collisionDiv.style.width = `${draggable.offsetWidth}px`;
+        collisionDiv.style.height = `${draggable.offsetHeight}px`;
+
+        // Variáveis para controle de movimento
+        let isDragging = false;
+        let offsetX, offsetY;
+
+        // Variáveis para controle de redimensionamento
+        let isResizing = false;
+        let startWidth, startHeight, startX, startY;
+
+        // Função para redimensionar a colisão
+        function resizeCollision(e) {
+            if (isResizing) {
+                const dx = e.clientX - startX;
+                const dy = e.clientY - startY;
+
+                collisionDiv.style.width = `${startWidth + dx}px`;
+                collisionDiv.style.height = `${startHeight + dy}px`;
+            }
+        }
+
+        // Iniciar o redimensionamento
+        function startResize(e) {
+            isResizing = true;
+            startWidth = collisionDiv.offsetWidth;
+            startHeight = collisionDiv.offsetHeight;
+            startX = e.clientX;
+            startY = e.clientY;
+
+            document.addEventListener('mousemove', resizeCollision);
+            document.addEventListener('mouseup', stopResize);
+        }
+
+        // Parar o redimensionamento
+        function stopResize() {
+            isResizing = false;
+            document.removeEventListener('mousemove', resizeCollision);
+            document.removeEventListener('mouseup', stopResize);
+        }
+
+        // Adicionar a alça de redimensionamento no canto inferior direito
+        const resizeHandle = document.createElement('div');
+        resizeHandle.style.position = 'absolute';
+        resizeHandle.style.width = '10px';
+        resizeHandle.style.height = '10px';
+        resizeHandle.style.backgroundColor = 'blue';
+        resizeHandle.style.bottom = '0';
+        resizeHandle.style.right = '0';
+        resizeHandle.style.cursor = 'se-resize';
+
+        resizeHandle.addEventListener('mousedown', startResize);
+
+        collisionDiv.appendChild(resizeHandle);
+
+        // Movimentação da colisão
+        collisionDiv.addEventListener('mousedown', function(e) {
+            if (e.target !== collisionDiv) return;
+
+            isDragging = true;
+            offsetX = e.clientX - collisionDiv.offsetLeft;
+            offsetY = e.clientY - collisionDiv.offsetTop;
+
+            document.addEventListener('mousemove', moveCollision);
+            document.addEventListener('mouseup', stopDrag);
+        });
+
+        // Movendo a colisão
+        function moveCollision(e) {
+            if (isDragging && !ctrlPressed) {
+                collisionDiv.style.left = `${e.clientX - offsetX}px`;
+                collisionDiv.style.top = `${e.clientY - offsetY}px`;
+            }
+        }
+
+        // Parando a movimentação
+        function stopDrag() {
+            isDragging = false;
+            document.removeEventListener('mousemove', moveCollision);
+            document.removeEventListener('mouseup', stopDrag);
+        }
+
+        draggable.appendChild(collisionDiv);
+        document.body.removeChild(menu);
+    });
+
+    // Fechar o menu ao clicar fora dele
+    const closeMenuIfOutsideClick = function(event) {
+        if (!menu.contains(event.target) && !draggable.contains(event.target)) {
+            document.body.removeChild(menu); // Remove o menu
+            document.removeEventListener('click', closeMenuIfOutsideClick); // Remover o ouvinte de evento após fechar o menu
+        }
+    };
+
+    // Adicionar o ouvinte de clique no documento
+    document.addEventListener('click', closeMenuIfOutsideClick);
+}
+
+
+
+
+
+
+
 
     function onMouseMove(e) {
         if (isDragging && selectedElements.length > 0) {
@@ -294,6 +473,7 @@ namespace webEngine
     // Função para forçar a re-renderização durante a rolagem
     window.addEventListener('scroll', () => {
         document.documentElement.style.transform = 'translateZ(0)';
+
     });
 
     // Inicializa os elementos arrastáveis e de arrastar e soltar ao carregar a página
@@ -304,10 +484,14 @@ namespace webEngine
 });
 
         ";
+                var menu = @"
 
+";
                 try
                 {
                     await webView.CoreWebView2.ExecuteScriptAsync(jsContent);
+                    await webView.CoreWebView2.ExecuteScriptAsync(menu);
+
                     System.Windows.MessageBox.Show("JavaScript executed successfully.", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
                 catch (Exception ex)

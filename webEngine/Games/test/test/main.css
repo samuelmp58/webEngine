@@ -1,0 +1,21 @@
+
+body{
+    overflow: hidden;
+    user-select: none; /* Evita a seleção de texto em todo o corpo da página */
+    zoom: 100%;
+    /*cursor: crosshair;*/
+}
+
+#levelBackground{
+    position: absolute;
+    width: 20000;
+    height: 100%;
+    align-content:center;
+    left: 0px;
+    top: 0px;
+    z-index:-1;
+    background-color: lightblue;
+    /*background-image: url("");*/
+
+    background-size: contain; 
+}

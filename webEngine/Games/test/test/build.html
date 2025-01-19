@@ -1,0 +1,50 @@
+<!-- samuelmp58 Game Engine Template -->
+<html>
+    <head>
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="objects/imports.css">
+    <meta name="viewport" content="width=device-width, initial-scale=5.0, maximum-scale=1.0, user-scalable=no">
+    <style>
+        [data-draggable="true"] {
+            position: absolute;
+        }
+        .selected {
+            cursor: move;
+        }
+        .resizable {
+            position: absolute;
+        }
+        .resizer {
+            width: 10px;
+            height: 10px;
+            background: red;
+            position: absolute;
+            z-index: 10;
+            display: none;
+        }
+        .resizable.selected .resizer {
+            display: block;
+        }
+        .resizer.bottom-right {
+            bottom: -5px;
+            right: -5px;
+            cursor: nwse-resize;
+        }
+        .resizer.middle-right {
+            top: 50%;
+            right: -5px;
+            cursor: ew-resize;
+            transform: translateY(-50%);
+        }
+        .resizer.middle-bottom {
+            bottom: -5px;
+            left: 50%;
+            cursor: ns-resize;
+            transform: translateX(-50%);
+        }
+    </style>
+    </head>
+    <body>
+        <div id="levelBackground"></div>
+    </body>
+</html>

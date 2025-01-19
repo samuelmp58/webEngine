@@ -39,7 +39,6 @@ namespace webEngine
             InitializeWebView();
             fileTreeView.SelectedItemChanged += fileTreeView_SelectedItemChanged; // Adicionar evento de seleção de item
             codeEditor = new CodeEditor(this);
-
         }
 
         private async void InitializeWebView()
@@ -163,8 +162,6 @@ namespace webEngine
             // Show in WebView2
             fileExplorerDown.NavigateToString(htmlBuilder.ToString());
         }
-
-
 
         private void CoreWebView2_WebMessageReceived(object sender, CoreWebView2WebMessageReceivedEventArgs e)
         {

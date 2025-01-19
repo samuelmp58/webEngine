@@ -6,6 +6,8 @@ let control;
 let boxOne;
 let ak;
 
+
+//
 function setPlayerControl(){
 	control  = new Control(player, {
         speedMultiplier: 3,
@@ -60,6 +62,7 @@ function setup()
 {
 	player = addObject(document.getElementById('thePlayer'), true, document.getElementById('playerCollision'));
 	addObject(document.getElementById('boxthree'), true);
+	let boxThree2 = addObject(document.getElementById('boxthree2'), true);
 	boxOne = addObject(document.getElementById('boxOne'));
 	ak = addObject(document.getElementById('ak47_1'));
 	
